@@ -22,7 +22,7 @@ class Game:
         if not isinstance(word, str):
             return False
         # check if the given  world is a subset of the desired solution
-        if not all(x in self.grid for x in list(word)):
+        if not all(x in self.grid for x in word):
             return False
         # check if the given world is real word
         response = requests.get(f"{Game.URL}/{word}")
