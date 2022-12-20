@@ -15,13 +15,17 @@ class Game:
 
     def __init__(self) -> list:
         """Attribute a random grid to size 9"""
-        self.grid = [random.choice(string.ascii_letters) for _ in range(9)]
+        self.grid = [random.choice(string.ascii_uppercase) for _ in range(9)]
 
     def is_valid(self, word: str) -> bool:
         """Check if a given world is valid"""
 
         # check it's a string
         if not isinstance(word, str):
+            return False
+
+        # check not empty string
+        if len(word.strip()) == 0:
             return False
 
         # check if the given world is a subset of the desired solution
