@@ -14,7 +14,7 @@ body {
   background-color: #FFEB3B;
   color: #666;
 }
-#form, #results {
+#form, #results, #score {
   margin: 1em 0;
 }
 .valid {
