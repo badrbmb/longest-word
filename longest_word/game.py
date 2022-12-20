@@ -8,10 +8,11 @@ import random
 import string
 import requests
 
-URL = "https://wagon-dictionary.herokuapp.com/"
-
 class Game:
     """Create a game instance"""
+
+    URL = "https://wagon-dictionary.herokuapp.com/"
+
     def __init__(self) -> list:
         """Attribute a random grid to size 9"""
         self.grid = [random.choice(string.ascii_letters) for _ in range(9)]
