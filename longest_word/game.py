@@ -25,7 +25,7 @@ class Game:
         if not all(x in self.grid for x in list(word)):
             return False
         # check if the given world is real word
-        response = requests.get(f"{URL}/{word}")
+        response = requests.get(f"{Game.URL}/{word}")
         # make sure status code is 200
         response.raise_for_status()
         # get reponse
