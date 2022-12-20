@@ -1,12 +1,9 @@
-from flask import Flask, render_template, request, session
-from flask_session import Session
+from flask import Flask, render_template, request, make_response
 from longest_word.game import Game
 
 app = Flask(__name__)
 # add configuration
-SESSION_TYPE = 'filesystem'
 app.config.from_object(__name__)
-Session(app)
 
 @app.route('/')
 def home():
@@ -20,14 +17,16 @@ def check():
     game.grid = list(request.form['grid'])
     word = request.form['word']
     is_valid = game.is_valid(word)
-    # init. score if missing
-    if 'score' not in session:
-        # init session score
-        session['score'] = 0
+    # get score
+    score = int(request.cookies.get('score', 0))
     if is_valid:
-        # increment global score
-        session['score'] += 1
-    return render_template(
-        'check.html', is_valid=is_valid, grid=game.grid,
-        word=word, score=session['score']
+        score += 1
+    res = make_response(
+        render_template(
+            'check.html', is_valid=is_valid, grid=game.grid,
+            word=word, score=score
+            )
         )
+    # save new score in cookies
+    res.set_cookie('score', str(score))
+    return res
