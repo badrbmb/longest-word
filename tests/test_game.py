@@ -16,13 +16,13 @@ class TestGame:
 
     def test_is_valid(self):
 
-            test_grid = list('ETIAGDNNERNIEGABLOBL')
+            test_grid = list('DSREOOVEJSUSOLF')
             # setup
             game = Game()
             # exercise
             game.grid = test_grid
             # verifiy
-            test_word = 'DATAENGINEERING'
+            test_word = 'OVERDOSE'
             assert game.is_valid(test_word) is True
 
     def test_is_not_valid(self):
