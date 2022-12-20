@@ -25,6 +25,18 @@ class TestGame:
             test_word = 'OVERDOSE'
             assert game.is_valid(test_word) is True
 
+    def test_is_valid_duplicate_letter(self):
+
+            test_grid = list('GROVEABC')
+            # setup
+            game = Game()
+            # exercise
+            game.grid = test_grid
+            # verifiy
+            test_word = 'GROOVE'
+            assert game.is_valid(test_word) is False
+
+
     def test_is_not_valid(self):
 
         test_grid = list('ETIAGDNNERNIEGABLOBL')

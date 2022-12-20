@@ -19,11 +19,19 @@ class Game:
 
     def is_valid(self, word: str) -> bool:
         """Check if a given world is valid"""
+
+        # check it's a string
         if not isinstance(word, str):
             return False
-        # check if the given  world is a subset of the desired solution
-        if not all(x in self.grid for x in word):
-            return False
+
+        # check if the given world is a subset of the desired solution
+        letters = self.grid.copy() # Consume letters from the grid
+        for letter in word:
+            if letter in letters:
+                letters.remove(letter)
+            else:
+                return False
+
         # check if the given world is real word
         response = requests.get(f"{Game.URL}/{word}")
         # make sure status code is 200
