@@ -16,14 +16,26 @@ class TestGame:
 
     def test_is_valid(self):
 
-            test_grid = list('ETIAGDNNERNIEGABLOBL')
+            test_grid = list('DSREOOVEJSUSOLF')
             # setup
             game = Game()
             # exercise
             game.grid = test_grid
             # verifiy
-            test_word = 'DATAENGINEERING'
+            test_word = 'OVERDOSE'
             assert game.is_valid(test_word) is True
+
+    def test_is_valid_duplicate_letter(self):
+
+            test_grid = list('GROVEABC')
+            # setup
+            game = Game()
+            # exercise
+            game.grid = test_grid
+            # verifiy
+            test_word = 'GROOVE'
+            assert game.is_valid(test_word) is False
+
 
     def test_is_not_valid(self):
 
@@ -35,3 +47,10 @@ class TestGame:
         # verifiy
         test_word = 'POETRY'
         assert game.is_valid(test_word) is False
+
+
+    def test_unknown_word_is_invalid(self):
+        """A word that is not in the english directory should no be valid"""
+        new_game = Game()
+        new_game.grid = list('KWIENFUQW') # Force the grid to a test case:
+        assert new_game.is_valid('FEUN') is False
