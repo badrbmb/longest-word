@@ -24,6 +24,10 @@ class Game:
         if not isinstance(word, str):
             return False
 
+        # check not empty string
+        if len(word.strip()) == 0:
+            return False
+
         # check if the given world is a subset of the desired solution
         letters = self.grid.copy() # Consume letters from the grid
         for letter in word:
